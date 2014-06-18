@@ -69,8 +69,10 @@ names(second.dataset) <- c("activity", "subject", as.character(columns.names$V2)
 
 for (vat in 1:nrow(second.dataset)) {
   second.dataset[vat, ] <- 
-    c(second.dataset$activity[vat], second.dataset$subject[vat],
+    c(as.character(second.dataset$activity[vat]), second.dataset$subject[vat],
           average.of.variables(full.dataset,second.dataset$subject[vat],
                                second.dataset$activity[vat],columns.names$V2))
-  print(vat)
 }
+
+write.csv(full.dataset, file = "full.dataset.csv")
+write.csv(second.dataset, file = "second.dataset.csv")
